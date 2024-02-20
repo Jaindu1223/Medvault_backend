@@ -10,6 +10,15 @@ const uri = "mongodb+srv://kuser:auser@medvault.glzwxzz.mongodb.net/?retryWrites
 
 app.use(bodyParser.json());
 
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
 // Connect to MongoDB and start the server
 async function startServer() {
   try {
@@ -30,8 +39,10 @@ async function startServer() {
   }
 }
 
+startServer();
+
 // Define a route to get a user's email by their ID
-app.get('/user/:id/email', async (req, res) => {
+app.get('/users', async (req, res) => {
   try {
     const userId = req.params.id;
 
@@ -53,3 +64,5 @@ app.get('/user/:id/email', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
+
+
