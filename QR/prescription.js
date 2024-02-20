@@ -6,14 +6,29 @@ const User = require('./models/User'); // Assuming you have a User model
 
 const app = express();
 const port = 3000;
+const uri = "mongodb+srv://kuser:auser@medvault.glzwxzz.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(bodyParser.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/your_database', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Connect to MongoDB and start the server
+async function startServer() {
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    // Start the Express server
+    app.listen(PORT, () => {
+      console.log('Your server is running on port ${PORT}');
+    });
+
+    // Send a ping to confirm a successful connection (optional starting in v4.7)
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    process.exit(1); // Exit the process if there's an error
+  }
+}
 
 // Define a route to get a user's email by their ID
 app.get('/user/:id/email', async (req, res) => {
