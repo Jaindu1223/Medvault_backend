@@ -145,7 +145,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const app = express();
+const app = express(); 
 const PORT = 5000;
 
 const uri = "mongodb+srv://kuser:auser@medvault.glzwxzz.mongodb.net/?retryWrites=true&w=majority";
@@ -188,16 +188,16 @@ startServer();
 app.get('/searchPharmacies', async (req, res) => {
   try {
     const database = client.db("stock_check");
-    const medicinesCollection = database.collection("pharmacies");//not medicines
+    const medicinesCollection = database.collection("pharmacies");
 
-    const medicineName = req.query.medicineName.toLowerCase;//change 1 boady to query
-    const medicine = await medicinesCollection.findOne({ medicine: medicineName });
+    const medicineName = req.query.medicineName.toLowerCase();//change 1 boady to query
+    const medicine = await medicinesCollection.findOne({ medicine: { $in: [medicineName] } });
 
     if (!medicine) {
       return res.status(404).json({ error: "Medicine not found" });
     }
 
-    res.json({ pharmacy: medicine.pharmacy, city: medicine.city });
+    res.json({ pharmacy: medicine.pharmacy});
   } catch (error) {
     console.error("Error searching pharmacies:", error);
     res.status(500).json({ error: "Internal server error" });
