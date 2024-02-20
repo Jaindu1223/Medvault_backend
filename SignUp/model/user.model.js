@@ -10,6 +10,12 @@ const userSchema = new Schema({
     email:{
         type:String
     },
+    phonenumber:{
+        type:Number
+    },
+    NIC:{
+        type:String
+    },
     password:{
         type:String
     },
