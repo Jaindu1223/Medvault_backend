@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 //const User = require('./models/User'); // Assuming you have a User model
 
 const app = express();
-const port = 1000;
+const port = 4000;
 const uri = "mongodb+srv://kuser:auser@medvault.glzwxzz.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(bodyParser.json());
