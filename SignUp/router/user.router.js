@@ -6,7 +6,7 @@ router.post('/userRegistration', async (req,res)=>{
     try {
         const {name,email,phonenumber,NIC,password} = req.body;
 
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({NIC});
         if(!user){
             const createuser = new userModel({name,email,phonenumber,NIC,password});
             await createuser.save();
@@ -20,15 +20,15 @@ router.post('/userRegistration', async (req,res)=>{
     } catch (error) {
         console.log(error);
     }
-   
+
 
 });
 
 router.post('/userLogin', async (req,res)=>{
     try {
-        const {email,password} = req.body;
+        const {NIC,password} = req.body;
 
-        const user = await userModel.findOne({email,password});
+        const user = await userModel.findOne({NIC,password});
         if(user){
            
             res.json({status:true,success : user});
