@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 //const User = require('./models/User'); // Assuming you have a User model
 
 const app = express();
-const port = 4000;
+const port = 6000;
 const uri = "mongodb+srv://kuser:auser@medvault.glzwxzz.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(bodyParser.json());
@@ -56,12 +56,8 @@ app.get('/users', async (req, res) => {
     // Return the user's email
     res.json({ email: user.email });
   } catch (error) {
-    console.error('Error retrieving user email:', error);
+    console.error('Error retrieving user email: ', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
-// app.listen(port, () => {
-//   console.log(`Server is listening at http://localhost:${port}`);
-// });
 
