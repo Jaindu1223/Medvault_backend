@@ -12,7 +12,7 @@ const userModel = require('../model/qr.model');
 //             await createuser.save();
 
 
-//             res.json({status:true,success : "User Created Successfully"});
+//             res.json({status:true,success : "User Created Successfully "});
 //         }else{
 //             res.json({status:false,success : "User Exist"});
 //         }
