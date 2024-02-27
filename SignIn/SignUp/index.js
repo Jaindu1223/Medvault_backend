@@ -1,6 +1,6 @@
 const app = require("./app")
 
-const port = 3000;
+const port = 4000;
 
 
 app.get('/',(req,res)=>{
@@ -8,6 +8,6 @@ app.get('/',(req,res)=>{
    res.send(` Hello ${data}`)
 })
 
-app.listen(3000,()=>{
-    console.log("Localhost Express running at 3000");
+app.listen(4000,()=>{
+    console.log("Localhost Express running at 4000");
 })
