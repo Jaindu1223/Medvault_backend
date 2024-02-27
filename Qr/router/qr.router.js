@@ -28,12 +28,12 @@ const userModel = require('../model/qr.model');
 router.get('/userEmails', async (req, res) => {
   try {
     // Retrieve all users from MongoDB
-    const users = await userModel.find({}, 'email');
+    const users = await userModel.find({}, 'NIC');
 
     // Extract email addresses from users
-    const emails = users.map(user => user.email);
+    const NICs = users.map(user => user.NIC);
 
-    res.json(emails);
+    res.json(NICs);
   } catch (error) {
     console.error('Error retrieving user emails: ', error);
     res.status(500).json({ error: 'Internal server error' });
