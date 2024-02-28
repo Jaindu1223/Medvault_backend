@@ -169,7 +169,7 @@ async function startServer() {
 
     // Start the Express server
     app.listen(PORT, () => {
-      console.log('Your server is running on port ${PORT}');
+      console.log('Your server is running ');
     });
 
     // Send a ping to confirm a successful connection (optional starting in v4.7)
@@ -183,21 +183,29 @@ async function startServer() {
 
 startServer();
 
-// Route to handle pharmacy search
-//change 2 post to get
 app.get('/searchPharmacies', async (req, res) => { 
   try {
     const database = client.db("stock_check");
     const medicinesCollection = database.collection("pharmacies");
 
     const medicineName = req.query.medicineName.toLowerCase();//change 1 boady to query
-    const medicine = await medicinesCollection.findOne({ medicine: { $in: [medicineName] } });
+    // const medicine = await medicinesCollection.findOne({ medicine: { $in: [medicineName] } });
+    const medicines = await medicinesCollection.find({ medicine: { $all: [medicineName] } }).toArray();
 
-    if (!medicine) {
+    // if (!medicine) {
+    //   return res.status(404).json({ error: "Medicine not found" });
+    // }
+
+    // res.json({ pharmacy: medicine.pharmacy});
+
+    if (!medicines || medicines.length === 0) {
       return res.status(404).json({ error: "Medicine not found" });
     }
 
-    res.json({ pharmacy: medicine.pharmacy});
+    
+    const pharmacyNames = medicines.map(medicine => medicine.pharmacy);
+
+    res.json({ pharmacies: pharmacyNames });
   } catch (error) {
     console.error("Error searching pharmacies:", error);
     res.status(500).json({ error: "Internal server error" });
