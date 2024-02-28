@@ -165,7 +165,7 @@ const client = new MongoClient(uri, {
 async function startServer() {
   try {
     await client.connect();
-    console.log("Connected to MongoDB");
+    // console.log("Connected to MongoDB");
 
     // Start the Express server
     app.listen(PORT, () => {
@@ -185,7 +185,7 @@ startServer();
 
 // Route to handle pharmacy search
 //change 2 post to get
-app.get('/searchPharmacies', async (req, res) => {
+app.get('/searchPharmacies', async (req, res) => { 
   try {
     const database = client.db("stock_check");
     const medicinesCollection = database.collection("pharmacies");
