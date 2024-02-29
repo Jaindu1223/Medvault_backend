@@ -18,12 +18,10 @@ const prescriptionSchema = new Schema({
     type: String,
     //required: true
   },
-} //{
-  //timestamps: true
-//}
+}
 )
 
 //module.exports = mongoose.model('Prescription', PrescriptionSchema);
 
-const prescriptionModel = db.model('prescription',prescriptionSchema);
+const prescriptionModel = db.model('save_prescription',prescriptionSchema);
 module.exports = prescriptionModel;

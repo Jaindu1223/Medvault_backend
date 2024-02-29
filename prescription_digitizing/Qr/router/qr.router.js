@@ -36,7 +36,7 @@ router.get('/userEmails', async (req, res) => {
     res.json(NICs);
   } catch (error) {
     console.error('Error retrieving user emails : ', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error ' });
   }
 });
 
