@@ -24,8 +24,8 @@ const userModel = require('../model/qr.model');
 // module.exports = router;
 
 
-// GET API to retrieve email addresses
-router.get('/userEmails', async (req, res) => {
+// GET API to retrieve nic 
+router.get('/userNic', async (req, res) => {
   try {
     // Retrieve all users from MongoDB
     const users = await userModel.find({}, 'NIC');
