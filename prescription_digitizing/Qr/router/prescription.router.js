@@ -12,4 +12,15 @@ router.post('/saveprescription', async (req, res) => {
   }
 });
 
+
+router.get('/prescriptions', async (req, res) => {
+  try {
+    const prescriptions = await prescriptionModel.find();
+    res.status(200).json(prescriptions);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;
