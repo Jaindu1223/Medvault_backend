@@ -6,17 +6,15 @@ const db = require('../config/db');
 const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema({
-  name: {
-    type: String,
-    //required: true
-  },
-  address: {
-    type: String,
-    //required: true
-  },
-  phoneNumber: {
-    type: String,
-    //required: true
+  patientName:String,
+  age:Number,
+  address: String,
+  medicationName: String,
+  dosage: Number,
+  instructions: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 }
 )
