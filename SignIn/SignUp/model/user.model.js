@@ -5,19 +5,25 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     name:{
-        type:String
+        type:String,
+        required :[true,"Fullname can't be empty"],
     },
     email:{
-        type:String
+        type:String,
+        required:[true,"Email can't be empty"]
     },
     phonenumber:{
-        type:Number
+        type:String,
+        required:true
     },
     NIC:{
-        type:String
+        type:String,
+        required:true
     },
     password:{
-        type:String
+        type:String,
+        required:true
+
     },
 })
 
