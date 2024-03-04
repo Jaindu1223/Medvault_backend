@@ -9,14 +9,13 @@ const userLongitude = 6.0317027914054435;
 router.get('/searchPharmacies', async (req, res) => {
   try {
     
-
     const medicineName = req.query.medicineName.toLowerCase();
 
     const pharmacies = await pharmacyModel.find({ medicine: { $all: [medicineName] } }).exec();
 
     if (!pharmacies || pharmacies.length === 0) {
       return res.status(404).json({ error: "Medicine not found" });
-    }
+    } 
 
     const pharmaciesWithDistances = pharmacies.map(pharmacy => ({
       ...pharmacy.toObject(),
