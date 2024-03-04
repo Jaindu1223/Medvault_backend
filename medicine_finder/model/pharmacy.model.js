@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const pharmacySchema = new Schema({
   pharmacy: String,
   city:String, 
-  medicine: String,
+  medicine: [String],
   location:{
     type:{
       type: String,
