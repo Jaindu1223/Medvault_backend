@@ -7,12 +7,22 @@ const pharmacySchema = new Schema({
   pharmacy: String,
   city:String, 
   medicine: String,
-  location:Object,
+  location:{
+    type:{
+      type: String,
+      enum: ['Point'],
+      required: true
+    },
+    coordinates:{
+      type:[Number],
+      required:true
+    }
+  }
 
 }
-)
+);
 
-
+pharmacySchema.index({location:'2dsphere'});
   
 const pharmacyModel = db1.model('pharmacies',pharmacySchema);
 module.exports = pharmacyModel;
