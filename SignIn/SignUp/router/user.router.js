@@ -26,9 +26,9 @@ router.post('/userRegistration', async (req,res)=>{
 
 router.post('/userLogin', async (req,res)=>{
     try {
-        const {NIC,password} = req.body;
+        const {email,password} = req.body;
 
-        const user = await userModel.findOne({NIC,password});
+        const user = await userModel.findOne({email,password});
         if(user){
            
             res.json({status:true,success : user});
