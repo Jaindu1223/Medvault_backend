@@ -4,9 +4,9 @@ const db1 = require('../config/db1');
 const { Schema } = mongoose;
 
 const pharmacySchema = new Schema({
-  pharmacy: String,
-  city:String, 
-  medicine: [String],
+  pharmacy: {type:String},
+  city:{type:String}, 
+  medicine: {type:String},
   location:{
     type:{
       type: String,
@@ -14,7 +14,7 @@ const pharmacySchema = new Schema({
       required: true
     },
     coordinates:{
-      type:[Number],
+      type:[String],
       required:true
     }
   }

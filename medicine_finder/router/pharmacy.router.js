@@ -28,8 +28,9 @@ router.get('/searchPharmacies', async (req, res) => {
     pharmaciesWithDistances.sort((a, b) => a.distance - b.distance);
 
     const nearestPharmacy = pharmaciesWithDistances[0];
+    const nearestPharmacyName = nearestPharmacy.pharmacy;
 
-    res.json({ nearestPharmacy });
+    res.json({ nearestPharmacyName });
 
   } catch (error) {
     console.error("Error searching pharmacies:", error);
