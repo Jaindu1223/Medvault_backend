@@ -7,7 +7,7 @@ const userLatitude = 80.2160345684007;
 const userLongitude = 6.0317027914054435;
 
 router.get('/searchPharmacies', async (req, res) => {
-  try {
+  try { 
     
     const medicineName = req.query.medicineName.toLowerCase();
 
