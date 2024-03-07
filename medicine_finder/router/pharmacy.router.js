@@ -3,11 +3,20 @@ const router = express.Router();
 const pharmacyModel = require('../model/pharmacy.model');
 const geolib = require('geolib');
 
-const userLatitude = 80.2160345684007;
-const userLongitude = 6.0317027914054435;
+// const userLatitude = 80.2160345684007;
+// const userLongitude = 6.0317027914054435;
+
+let userLatitude = 0;
+let userLongitude = 0;
 
 router.get('/searchPharmacies', async (req, res) => {
   try { 
+
+    if(req.query.latitude && req.query.longitude){
+      userLatitude = parseFloat(req.query.latitude);
+      userLongitude = parseFloat(req.query.longitude);
+
+    }
     
     const medicineName = req.query.medicineName.toLowerCase();
 
