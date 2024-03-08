@@ -23,4 +23,17 @@ router.get('/prescriptions', async (req, res) => {
 });
 
 
+
+// Get prescription by ObjectId
+router.get('/id', async (req, res) => {
+  try {
+    const prescription = await prescriptionModel.findById(req.params.id);
+    if (!prescription) throw new Error('Prescription not found');
+    res.status(200).json(prescription);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;
