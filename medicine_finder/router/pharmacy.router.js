@@ -56,8 +56,9 @@ router.get('/searchPharmacies', async (req, res) => {
 
     const nearestPharmacy = pharmaciesWithDistances[0];
     const nearestPharmacyName = nearestPharmacy.pharmacy;
+    const mapLink = nearestPharmacy.link;
 
-    res.json({ nearestPharmacyName,userLocation });
+    res.json({ nearestPharmacyName,userLocation,mapLink });
     
 
   } catch (error) {
