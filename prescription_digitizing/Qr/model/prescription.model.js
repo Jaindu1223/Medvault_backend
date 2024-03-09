@@ -9,15 +9,29 @@ const prescriptionSchema = new Schema({
   patientName:String,
   age:Number,
   address: String,
-  medicationName: String,
-  dosage: Number,
+
+  medication1Name: String,
+  dosage1: Number,
+  moreDetails1:String,
+
+  medication2Name: String,
+  dosage2 : Number,
+  moreDetails2 :String,
+
+  medication3Name: String,
+  dosage3: Number,
+  moreDetails3 :String,
+  
+  additional : String,
   instructions: String,
+
   createdAt: {
     type: Date,
     default: Date.now,
   },
 }
 )
+
 
 
 
