@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const userModel = require('../model/qr.model');
+const qrNicModel = require('../model/qr.model');
 
 
 // router.post('/userRegistration', async (req,res)=>{
@@ -24,21 +24,50 @@ const userModel = require('../model/qr.model');
 // module.exports = router;
 
 
-// GET API to retrieve email addresses
-router.get('/userEmails', async (req, res) => {
+// GET API to retrieve nic 
+// router.get('/userNic', async (req, res) => {
+//   try {
+//     // Retrieve all users from MongoDB
+//     const users = await userModel.find({}, 'NIC');
+
+//     // Extract email addresses from users
+//     const NICs = users.map(user => user.NIC);
+
+//     res.json(NICs);
+//   } catch (error) {
+//     console.error('Error retrieving user emails : ', error);
+//     res.status(500).json({ error: 'Internal server error ' });
+//   }
+// });
+
+
+
+
+router.get('/:id/email', async (req, res) => {
   try {
-    // Retrieve all users from MongoDB
-    const users = await userModel.find({}, 'NIC');
-
-    // Extract email addresses from users
-    const NICs = users.map(user => user.NIC);
-
-    res.json(NICs);
-  } catch (error) {
-    console.error('Error retrieving user emails : ', error);
-    res.status(500).json({ error: 'Internal server error ' });
+    const user = await qrNicModel.findById(req.params.id);
+    if (user) {
+      res.json({ NIC: user.NIC});
+    } else {
+      res.status(404).json({ message: 'User not found..' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
+// router.get('/email', async (req, res) => {
+//   try {
+//     const userId = req.user.id; // Retrieve the user ID from the request headers
+//     const user = await qrNicModel.findById(userId);
+//     if (user) {
+//       res.json({ email: user.email });
+//     } else {
+//       res.status(404).json({ message: 'User not found..' });
+//     }
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
 module.exports = router;
 

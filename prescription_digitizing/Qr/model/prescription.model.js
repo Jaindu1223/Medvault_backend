@@ -32,9 +32,7 @@ const prescriptionSchema = new Schema({
 }
 )
 
-// prescriptionModel.statics.find = async function() {
-//   return await this.find({});
-// };
+
 
 
 //module.exports = mongoose.model('Prescription', PrescriptionSchema);
