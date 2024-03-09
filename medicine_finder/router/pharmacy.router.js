@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pharmacyModel = require('../model/pharmacy.model');
 const geolib = require('geolib');
+const axios = require('axios');
 
 // const userLatitude = 80.2160345684007;
 // const userLongitude = 6.0317027914054435;
@@ -16,6 +17,11 @@ router.get('/searchPharmacies', async (req, res) => {
       userLatitude = parseFloat(req.query.latitude);
       userLongitude = parseFloat(req.query.longitude);
 
+    }
+
+    const userLocation = {
+      latitude: userLatitude,
+      longitude: userLongitude
     }
     
     const medicineName = req.query.medicineName.toLowerCase();
@@ -39,7 +45,8 @@ router.get('/searchPharmacies', async (req, res) => {
     const nearestPharmacy = pharmaciesWithDistances[0];
     const nearestPharmacyName = nearestPharmacy.pharmacy;
 
-    res.json({ nearestPharmacyName });
+    res.json({ nearestPharmacyName,userLocation });
+    
 
   } catch (error) {
     console.error("Error searching pharmacies:", error);
