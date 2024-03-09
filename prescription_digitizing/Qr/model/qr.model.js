@@ -3,23 +3,13 @@ const db = require('../config/db');
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-    name:{
-        type:String
-    },
-    email:{
-        type:String
-    },
-    phonenumber:{
-        type:Number
-    },
-    NIC:{
-        type:String
-    },
-    password:{
-        type:String
-    },
-})
+const qrNicSchema = new Schema({
 
-const userModel = db.model('signup_details',userSchema);
-module.exports = userModel;
+  NIC: {
+    type: String,
+    unique: true,
+  },
+});
+
+const qrNicModel = db.model('signup_details', qrNicSchema);
+module.exports = qrNicModel;
