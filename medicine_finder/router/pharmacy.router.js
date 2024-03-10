@@ -11,12 +11,19 @@ router.get('/searchPharmacies', async (req, res) => {
 
     
 
-    const userLocation = {
-      latitude: userlatitude,
-      longitude: userlongitude
-    }
+    // const userLocation = {
+    //   latitude: userlatitude,
+    //   longitude: userlongitude
+    // }
     
-    const medicineName = req.query.medicineName.toLowerCase();
+    const medicineName = req.query.userMedicine.toLowerCase();
+    const latitude=parseFloat(req.query.userlatitude);
+    const longitude=parseFloat(req.query.userlongitude);
+
+    const userLocation = {
+      latitude,
+      longitude
+    }
 
     const pharmacies = await pharmacyModel.find({ medicine: { $all: [medicineName] } }).exec();
 
