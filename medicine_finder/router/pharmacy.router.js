@@ -2,34 +2,14 @@ const express = require('express');
 const router = express.Router();
 const pharmacyModel = require('../model/pharmacy.model');
 const geolib = require('geolib');
-const axios = require('axios');
 
-// const userLatitude = 80.2160345684007;
-// const userLongitude = 6.0317027914054435;
-
-// let userLatitude = 0;
-// let userLongitude = 0;
 
 router.get('/searchPharmacies', async (req, res) => {
   try { 
 
-    // if(req.query.latitude && req.query.longitude){
-    //   userLatitude = parseFloat(req.query.latitude);
-    //   userLongitude = parseFloat(req.query.longitude);
+    
 
-    // }
-
-    const response = await axios.get('http://ipapi.co/json');
-    const location = response.data;
-    userlatitude = location.latitude;
-    userlongitude = location.longitude;
-
-
-
-    // const userLocation = {
-    //   latitude: userLatitude,
-    //   longitude: userLongitude
-    // }
+    
 
     const userLocation = {
       latitude: userlatitude,
@@ -47,7 +27,7 @@ router.get('/searchPharmacies', async (req, res) => {
     const pharmaciesWithDistances = pharmacies.map(pharmacy => ({
       ...pharmacy.toObject(),
       distance: geolib.getDistance(
-        { latitude: userlatitude, longitude: userlongitude },
+        { latitude, longitude },
         { latitude: pharmacy.location.coordinates[1], longitude: pharmacy.location.coordinates[0] }
       )
     }));
