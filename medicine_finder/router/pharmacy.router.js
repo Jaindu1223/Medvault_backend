@@ -17,8 +17,8 @@ router.get('/searchPharmacies', async (req, res) => {
     // }
     
     const medicineName = req.query.userMedicine.toLowerCase();
-    const latitude=parseFloat(req.query.userlatitude);
-    const longitude=parseFloat(req.query.userlongitude);
+    const latitude=parseFloat(req.query.userLatitude);
+    const longitude=parseFloat(req.query.userLongitude);
 
     const userLocation = {
       latitude,
