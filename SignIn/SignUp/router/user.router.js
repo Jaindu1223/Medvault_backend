@@ -4,11 +4,11 @@ const userModel = require('../model/user.model');
 
 router.post('/userRegistration', async (req,res)=>{
     try {
-        const {name,email,phonenumber,NIC,password} = req.body;
+        const {name,birthdate,address,email,phonenumber,NIC,password} = req.body;
 
         const user = await userModel.findOne({NIC});
         if(!user){
-            const createuser = new userModel({name,email,phonenumber,NIC,password});
+            const createuser = new userModel({name,birthdate,address,email,phonenumber,NIC,password});
             await createuser.save();
 
 

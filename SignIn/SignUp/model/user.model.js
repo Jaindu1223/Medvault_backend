@@ -8,9 +8,17 @@ const userSchema = new Schema({
         type:String,
         required :[true,"Fullname can't be empty"],
     },
+    birthdate:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
-        required:[true,"Email can't be empty"]
+        // required:[true,"Email can't be empty"]
     },
     phonenumber:{
         type:String,
