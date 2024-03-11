@@ -3,13 +3,27 @@ const router = express.Router();
 const pharmacyModel = require('../model/pharmacy.model');
 const geolib = require('geolib');
 
-const userLatitude = 80.2160345684007;
-const userLongitude = 6.0317027914054435;
 
 router.get('/searchPharmacies', async (req, res) => {
-  try {
+  try { 
+
     
-    const medicineName = req.query.medicineName.toLowerCase();
+
+    
+
+    // const userLocation = {
+    //   latitude: userlatitude,
+    //   longitude: userlongitude
+    // }
+    
+    const medicineName = req.query.userMedicine.toLowerCase();
+    const latitude=parseFloat(req.query.userLatitude);
+    const longitude=parseFloat(req.query.userLongitude);
+
+    const userLocation = {
+      latitude,
+      longitude
+    }
 
     const pharmacies = await pharmacyModel.find({ medicine: { $all: [medicineName] } }).exec();
 
@@ -20,7 +34,7 @@ router.get('/searchPharmacies', async (req, res) => {
     const pharmaciesWithDistances = pharmacies.map(pharmacy => ({
       ...pharmacy.toObject(),
       distance: geolib.getDistance(
-        { latitude: userLatitude, longitude: userLongitude },
+        { latitude, longitude },
         { latitude: pharmacy.location.coordinates[1], longitude: pharmacy.location.coordinates[0] }
       )
     }));
@@ -29,8 +43,10 @@ router.get('/searchPharmacies', async (req, res) => {
 
     const nearestPharmacy = pharmaciesWithDistances[0];
     const nearestPharmacyName = nearestPharmacy.pharmacy;
+    const mapLink = nearestPharmacy.link;
 
-    res.json({ nearestPharmacyName });
+    res.json({ nearestPharmacyName,userLocation,mapLink });
+    
 
   } catch (error) {
     console.error("Error searching pharmacies:", error);
