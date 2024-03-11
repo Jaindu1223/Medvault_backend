@@ -34,9 +34,9 @@ router.get('/prescriptions', async (req, res) => {
 //     res.status(500).json({ message: error.message });
 //   }
 // });
-router.get('/patientNIC/:patientNIC', async (req, res) => {
+router.get('/email/:email', async (req, res) => {
   try {
-    const prescription = await prescriptionModel.findOne({ patientNIC: req.params.patientNIC });
+    const prescription = await prescriptionModel.findOne({ email: req.params.email });
     if (!prescription) throw new Error('Prescription not found');
     res.status(200).json(prescription);
   } catch (error) {
