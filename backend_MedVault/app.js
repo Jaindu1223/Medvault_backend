@@ -7,6 +7,7 @@ const qrNicRouter = require('./router/qr.router');
 const prescriptionRouter = require('./router/prescription.router');
 const userRouter = require('./router/user.router');
 const doctorRouter = require('./router/doctor.router');
+const pharmacy1Router = require('./router/pharmacy.router');
 
 
 const app = express();
@@ -22,5 +23,6 @@ app.use('/',qrNicRouter,);
 app.use('/', prescriptionRouter);
 app.use('/',userRouter);
 app.use('/',doctorRouter);
+app.use('/', pharmacy1Router);
 
 module.exports = app;
