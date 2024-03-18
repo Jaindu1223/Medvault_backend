@@ -7,7 +7,7 @@ const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema({
   patientName:String,
-  patientNIC:String,
+  patientEmail:String,
   age:Number,
   address: String,
 
