@@ -7,15 +7,6 @@ const geolib = require('geolib');
 router.get('/searchPharmacies', async (req, res) => {
   try { 
 
-    
-
-    
-
-    // const userLocation = {
-    //   latitude: userlatitude,
-    //   longitude: userlongitude
-    // }
-    
     const medicineName = req.query.userMedicine.toLowerCase();
     const latitude=parseFloat(req.query.userLatitude);
     const longitude=parseFloat(req.query.userLongitude);
@@ -43,9 +34,11 @@ router.get('/searchPharmacies', async (req, res) => {
 
     const nearestPharmacy = pharmaciesWithDistances[0];
     const nearestPharmacyName = nearestPharmacy.pharmacy;
+    const city = nearestPharmacy.city;
     const mapLink = nearestPharmacy.link;
+    const contact = nearestPharmacy.contact;
 
-    res.json({ nearestPharmacyName,userLocation,mapLink });
+    res.json({ nearestPharmacyName,city,userLocation,mapLink,contact });
     
 
   } catch (error) {

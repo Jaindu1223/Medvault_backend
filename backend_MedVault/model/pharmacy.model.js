@@ -18,7 +18,8 @@ const pharmacySchema = new Schema({
       required:true
     }
   },
-  link: {type: String}
+  link: {type: String},
+  contact: {type: String}
 
 }
 );
