@@ -10,9 +10,9 @@ router.post('/doctorRegistration', async (req,res)=>{
         const user = await doctorModel.findOne({SLMCregiNo});
         if(!user){
             const createuser = new doctorModel({name,email,SLMCregiNo,NIC,password})
-            if(req.file){
-                createuser.sign = req.file.path;
-            }
+            // if(req.file){
+            //     createuser.sign = req.file.path;
+            // }
             await createuser.save();
 
 
