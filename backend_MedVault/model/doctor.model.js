@@ -28,6 +28,10 @@ const doctorSchema = new Schema({
         type:String,
         required:true
     },
+    speciality:{
+        type:String,
+        required:true
+    },
     password:{
         type:String,
         required:true
