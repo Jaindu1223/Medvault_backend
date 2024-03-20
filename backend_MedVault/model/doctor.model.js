@@ -24,7 +24,11 @@ const doctorSchema = new Schema({
         type:String,
         required:true
 
-    },
+    }
+    // ,
+    // sign:{
+    //     type:String
+    // }
 })
 
 const doctorModel = db.model('signup_doc_details',doctorSchema);
