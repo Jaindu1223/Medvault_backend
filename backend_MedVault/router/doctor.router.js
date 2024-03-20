@@ -1,14 +1,18 @@
 const router = require('express').Router();
 const doctorModel = require('../model/doctor.model');
-
+// const upload = require('../middleware/upload')
 
 router.post('/doctorRegistration', async (req,res)=>{
+    console.log(req.file)
     try {
         const {name,email,SLMCregiNo,NIC,password} = req.body;
 
         const user = await doctorModel.findOne({SLMCregiNo});
         if(!user){
-            const createuser = new doctorModel({name,email,SLMCregiNo,NIC,password});
+            const createuser = new doctorModel({name,email,SLMCregiNo,NIC,password})
+            if(req.file){
+                createuser.sign = req.file.path;
+            }
             await createuser.save();
 
 
