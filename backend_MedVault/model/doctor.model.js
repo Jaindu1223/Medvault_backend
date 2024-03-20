@@ -6,17 +6,29 @@ const { Schema } = mongoose;
 const doctorSchema = new Schema({
     name:{
         type:String,
-        required :true
+        required :[true,"Fullname can't be empty"],
     },
-    email:{
+    address:{
         type:String,
         required:true
     },
-    SLMCregiNo :{
+    email:{
+        type:String,
+        // required:[true,"Email can't be empty"]
+    },
+    phonenumber:{
         type:String,
         required:true
     },
     NIC:{
+        type:String,
+        required:true
+    },
+    SLMCregiNo:{
+        type:String,
+        required:true
+    },
+    speciality:{
         type:String,
         required:true
     },
