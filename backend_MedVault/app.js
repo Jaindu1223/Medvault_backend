@@ -8,6 +8,7 @@ const prescriptionRouter = require('./router/prescription.router');
 const userRouter = require('./router/user.router');
 const doctorRouter = require('./router/doctor.router');
 const pharmacy1Router = require('./router/pharmacy.router');
+const patientDataRouter = require('./router/patientData.router');
 
 
 const app = express();
@@ -24,5 +25,6 @@ app.use('/', prescriptionRouter);
 app.use('/',userRouter);
 app.use('/',doctorRouter);
 app.use('/', pharmacy1Router);
+app.use('/',patientDataRouter)
 
 module.exports = app;
