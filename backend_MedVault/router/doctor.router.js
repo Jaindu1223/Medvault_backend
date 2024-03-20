@@ -4,11 +4,11 @@ const doctorModel = require('../model/doctor.model');
 
 router.post('/doctorRegistration', async (req,res)=>{
     try {
-        const {name,email,SLMCregiNo,NIC,password} = req.body;
+        const {name,address,email,phonenumber,NIC,SLMCregiNo,password} = req.body;
 
         const user = await doctorModel.findOne({SLMCregiNo});
         if(!user){
-            const createuser = new doctorModel({name,email,SLMCregiNo,NIC,password});
+            const createuser = new doctorModel({name,address,email,phonenumber,NIC,SLMCregiNo,password});
             await createuser.save();
 
 
@@ -20,6 +20,8 @@ router.post('/doctorRegistration', async (req,res)=>{
     } catch (error) {
         console.log(error);
     }
+
+
 });
 
 router.post('/doctorLogin', async (req,res)=>{
