@@ -1,4 +1,4 @@
-# Use official Node.js image as base image
+# Use a newer version of the Node.js base image
 FROM node:14
 
 # Set the working directory in the container
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Command to run your application
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]
