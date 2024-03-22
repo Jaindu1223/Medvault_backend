@@ -6,7 +6,7 @@ router.get('/searchPharmacies', pharmacyController.searchPharmacies);
 
 module.exports = router;
 
-
+  
 // const geolib = require('geolib');
 
 
