@@ -5,11 +5,11 @@ const doctorModel = require('../model/doctor.model');
 router.post('/doctorRegistration', async (req,res)=>{
     console.log(req.file)
     try {
-        const {name,email,SLMCregiNo,NIC,speciality,password} = req.body;
+        const {name,address,email,phonenumber,NIC,SLMCregiNo,speciality,password} = req.body;
 
         const user = await doctorModel.findOne({SLMCregiNo});
         if(!user){
-            const createuser = new doctorModel({name,email,SLMCregiNo,NIC,speciality,password})
+            const createuser = new doctorModel({name,address,email,phonenumber,NIC,SLMCregiNo,speciality,password})
             // if(req.file){
             //     createuser.sign = req.file.path;
             // }
