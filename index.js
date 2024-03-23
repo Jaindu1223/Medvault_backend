@@ -7,5 +7,5 @@ app.get('/',(req,res)=>{
 })
 
 app.listen(3001,()=>{
-  console.log("Localhost Express running at 3001");
+  console.log("Localhost Express running at 3001.");
 })
