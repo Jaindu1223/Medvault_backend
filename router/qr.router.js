@@ -1,5 +1,29 @@
-const router = require('express').Router();
-const qrNicModel = require('../model/qr.model');
+const express = require('express');
+const router = express.Router();
+const qrController = require('../controller/qr.controller');
+
+router.get('/:id/email', qrController.getUserEmailById);
+
+module.exports = router;
+
+// const router = require('express').Router();
+// const qrNicModel = require('../model/qr.model');
+
+
+// router.get('/:id/email', async (req, res) => {
+//   try {
+//     const user = await qrNicModel.findById(req.params.id);
+//     if (user) {
+//       res.json({ NIC: user.NIC});
+//     } else {
+//       res.status(404).json({ message: 'User not found..' });
+//     }
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+// module.exports = router;
 
 
 // router.post('/userRegistration', async (req,res)=>{
@@ -43,18 +67,8 @@ const qrNicModel = require('../model/qr.model');
 
 
 
-router.get('/:id/email', async (req, res) => {
-  try {
-    const user = await qrNicModel.findById(req.params.id);
-    if (user) {
-      res.json({ NIC: user.NIC});
-    } else {
-      res.status(404).json({ message: 'User not found..' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+
+
 // router.get('/email', async (req, res) => {
 //   try {
 //     const userId = req.user.id; // Retrieve the user ID from the request headers
@@ -68,8 +82,4 @@ router.get('/:id/email', async (req, res) => {
 //     res.status(500).json({ message: err.message });
 //   }
 // });
-
-module.exports = router;
-
-
 

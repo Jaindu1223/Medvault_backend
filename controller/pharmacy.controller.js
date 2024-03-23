@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const pharmacyModel = require('../model/pharmacy.model');
 const geolib = require('geolib');
 

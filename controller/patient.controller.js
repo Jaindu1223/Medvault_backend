@@ -1,7 +1,3 @@
-
-const express = require('express');
-const router = express.Router();
-
 const userModel = require('../model/user.model');
 
 async function registerUser(req, res) {
