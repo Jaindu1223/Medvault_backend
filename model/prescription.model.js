@@ -6,6 +6,9 @@ const db = require('../config/db');
 const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema({
+  docName:String,
+  docSpeciality:String,
+  docSLMC:String,
   patientName:String,
   email:String,
   age:Number,
