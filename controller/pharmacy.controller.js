@@ -26,7 +26,7 @@ const geolib = require('geolib');
       ...pharmacy.toObject(),
       distance: geolib.getDistance(
         { latitude, longitude },
-        { latitude: pharmacy.location.coordinates[1], longitude: pharmacy.location.coordinates[0] }
+        { latitude: pharmacy.location.coordinates[0], longitude: pharmacy.location.coordinates[1] }
       )
     }));
 
