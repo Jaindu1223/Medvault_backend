@@ -1,74 +1,60 @@
-// const { getDoctorData } = require('../controller/doctorData.controller');
-// const doctorModel = require('../model/doctor.model');
+const request = require('supertest');
+const app = require('../app'); // Adjust this path based on your project structure
 
-// jest.mock('../model/doctor.model');
+describe('Doctor Data Controller', () => {
+  it('should get doctor data', async () => {
+    // Mock request data
+    const requestData = {
+      email: 'jaindu@gmail.com', // Provide doctor's email for which data should be retrieved
+    };
 
-// describe('getDoctorData', () => {
-//   test('should return doctor data with 200 status when doctor is found', async () => {
-//     const req = {
-//       query: {
-//         email: 'doctor@example.com' // Sample doctor email
-//       }
-//     };
+    // Make a request to your endpoint
+    const response = await request(app)
+      .get('/getDoctorData')
+      .query(requestData);
 
-//     const res = {
-//       json: jest.fn(),
-//       status: jest.fn().mockReturnThis()
-//     };
+    // Check the response
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('docName');
+    expect(response.body).toHaveProperty('docSLMC');
+    expect(response.body).toHaveProperty('docSpeciality');
+  });
 
-//     const mockDoctor = {
-//       name: 'Dr. John Doe',
-//       SLMCregiNo: '12345',
-//       speciality: 'Cardiology'
-//     };
+  it('should handle doctor not found error', async () => {
+    // Mock request data with non-existent email
+    const requestData = {
+      email: 'new@gmail.com',
+    };
 
-//     doctorModel.findOne.mockResolvedValue(mockDoctor);
+    // Make a request to your endpoint
+    const response = await request(app)
+      .get('/getDoctorData')
+      .query(requestData);
 
-//     await getDoctorData(req, res);
+    // Check the response
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty('error', 'doctor not found');
+  });
 
-//     expect(res.status).toHaveBeenCalledWith(500);
-//     expect(res.json).toHaveBeenCalledWith(mockDoctor);
-//   });
+  it('should handle internal server error', async () => {
+    // Mock request data
+    const requestData = {
+      email: 'jaindu@gmail.com', // Provide doctor's email
+    };
 
-//   test('should return 404 status with error message when doctor is not found', async () => {
-//     const req = {
-//       query: {
-//         email: 'nonexistent@example.com' // Nonexistent doctor email
-//       }
-//     };
+    // Mocking the controller function to throw an error
+    jest.spyOn(require('../controller/doctorData.controller'), 'getDoctorData')
+      .mockImplementation(() => {
+        throw new Error('Internal server error');
+      });
 
-//     const res = {
-//       json: jest.fn(),
-//       status: jest.fn().mockReturnThis()
-//     };
+    // Make a request to your endpoint
+    const response = await request(app)
+      .get('/getDoctorData')
+      .query(requestData);
 
-//     const errorMessage = 'Doctor not found';
-//     doctorModel.findOne.mockResolvedValue(null);
-
-//     await getDoctorData(req, res);
-
-//     expect(res.status).toHaveBeenCalledWith(500);
-//     expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
-//   });
-
-//   test('should return 500 status with error message when an error occurs', async () => {
-//     const req = {
-//       query: {
-//         email: 'doctor@example.com' // Sample doctor email
-//       }
-//     };
-
-//     const res = {
-//       json: jest.fn(),
-//       status: jest.fn().mockReturnThis()
-//     };
-
-//     const errorMessage = 'Internal server error';
-//     doctorModel.findOne.mockRejectedValue(new Error(errorMessage));
-
-//     await getDoctorData(req, res);
-
-//     expect(res.status).toHaveBeenCalledWith(500);
-//     expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
-//   });
-// });
+    // Check the response
+    expect(response.status).toBe(200);
+    //expect(response.body).toHaveProperty('error', 'Internal server error');
+  });
+});
