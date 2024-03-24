@@ -14,6 +14,7 @@ async function getPatientData(req,res) {
     const patName = patient.name;
     const patBirthday = patient.birthdate;
     const patAddress = patient.address;
+    
 
     const[day,month,year] = patBirthday.split('/');
     const birthDate = new Date(`${year}-${month}-${day}`);
