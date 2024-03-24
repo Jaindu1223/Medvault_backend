@@ -3,10 +3,6 @@ const doctorModel = require('../model/doctor.model'); // Replace with the path t
 
 jest.mock('../model/doctor.model'); // Mock the doctor model module
 
-//const { registerDoctor, loginDoctor } = require('/Users/jaindugajanayake/Documents/GitHub/Medvault_backend1/controller/doctor.controller.js'); // Replace with the path to your controller file
-//const doctorModel = require('/Users/jaindugajanayake/Documents/GitHub/Medvault_backend1/model/doctor.model.js'); // Replace with the path to your doctor model file
-
-//jest.mock('/Users/jaindugajanayake/Documents/GitHub/Medvault_backend1/model/doctor.model.js'); // Mock the doctor model module
 
 describe('registerDoctor', () => {
   test('should register a new doctor', async () => {
