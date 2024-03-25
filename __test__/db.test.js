@@ -4,10 +4,8 @@ describe('MongoDB Connection', () => {
     it('should connect to MongoDB', async () => {
       await new Promise((resolve, reject) => {
         conn.once('open', () => {
-          //console.log('Mongodb Connected');
           resolve();
         }).on('error', (error) => {
-          //console.error('Mongodb error:', error);
           reject(error);
         });
       });
